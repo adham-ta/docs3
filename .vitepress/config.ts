@@ -617,28 +617,28 @@ export default defineConfigWithTheme<ThemeConfig>({
 
     localeLinks: [
       {
-        link: '',
-        text: '',
-        repo: ''
+        link: 'https://cn.vuejs.org',
+        text: '简体中文',
+        repo: 'https://github.com/vuejs-translations/docs-zh-cn'
       },
       {
-        link: '',
-        text: '',
-        repo: ''
+        link: 'https://ja.vuejs.org',
+        text: '日本語',
+        repo: 'https://github.com/vuejs-translations/docs-ja'
       },
       {
-        link: '',
-        text: '',
-        repo: ''
+        link: 'https://ua.vuejs.org',
+        text: 'Українська',
+        repo: 'https://github.com/vuejs-translations/docs-uk'
       },
       {
-        link: '',
-        text: '',
-        repo: ''
+        link: 'https://fr.vuejs.org',
+        text: 'Français',
+        repo: 'https://github.com/vuejs-translations/docs-fr'
       },
       {
-        link: '',
-        text: '',
+        link: '/translations/',
+        text: 'Help Us Translate!',
         isTranslationsDesc: true
       }
     ],
