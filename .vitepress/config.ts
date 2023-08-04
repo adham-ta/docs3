@@ -609,7 +609,39 @@ export default defineConfigWithTheme<ThemeConfig>({
     ]
   ],
 
-  __
+ themeConfig: {
+    nav,
+    sidebar,
+    // Placeholder of the i18n config for @vuejs-translations.
+    // i18n,
+
+    localeLinks: [
+      {
+        link: '',
+        text: '',
+        repo: ''
+      },
+      {
+        link: '',
+        text: '',
+        repo: ''
+      },
+      {
+        link: '',
+        text: '',
+        repo: ''
+      },
+      {
+        link: '',
+        text: '',
+        repo: ''
+      },
+      {
+        link: '',
+        text: '',
+        isTranslationsDesc: true
+      }
+    ],
 
     algolia: {
       indexName: 'vuejs',
