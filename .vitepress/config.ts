@@ -33,10 +33,6 @@ const nav: ThemeConfig['nav'] = [
     link: '/api/'
   },
   {
-    text: 'Playground',
-    link: 'https://play.vuejs.org'
-  },
-  {
     text: 'Ecosystem',
     activeMatch: `^/ecosystem/`,
     items: [
