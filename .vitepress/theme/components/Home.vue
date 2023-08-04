@@ -15,12 +15,11 @@ onMounted(async () => {
   <section id="hero">
     <h1 class="tagline">
       The
-      <span class="accent">Progressive</span>
-      <br />JavaScript Framework
+      <span class="accent">RepoBot</span>
+      <br />Blog
     </h1>
     <p class="description">
-      An approachable, performant and versatile framework for building web
-      user interfaces.
+      Welcome
     </p>
     <p class="actions">
       <VueMasteryModal />
