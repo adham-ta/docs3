@@ -29,22 +29,22 @@ const nav: ThemeConfig['nav'] = [
   },
   {
     text: 'API',
-    activeMatch: `^/1api/`,
-    link: '/1api/'
+    activeMatch: `^/api/`,
+    link: '/api/'
   },
   {
     text: 'Playground',
-    link: '1https://play.vuejs.org'
+    link: 'https://play.vuejs.org'
   },
   {
     text: 'Ecosystem',
-    activeMatch: `^/1ecosystem/`,
+    activeMatch: `^/ecosystem/`,
     items: [
       {
         text: 'Resources',
         items: [
-          { text: 'Partners', link: '/1partners/' },
-          { text: 'Themes', link: '/1ecosystem/themes' },
+          { text: 'Partners', link: '/partners/' },
+          { text: 'Themes', link: '/ecosystem/themes' },
           {
             text: 'Certification',
             link: 'https://certification.vuejs.org/?ref=vuejs-nav'
@@ -609,7 +609,39 @@ export default defineConfigWithTheme<ThemeConfig>({
     ]
   ],
 
-  __
+  themeConfig: {
+    nav,
+    sidebar,
+    // Placeholder of the i18n config for @vuejs-translations.
+    // i18n,
+
+    localeLinks: [
+      {
+        link: 'https://cn.vuejs.org',
+        text: '简体中文',
+        repo: 'https://github.com/vuejs-translations/docs-zh-cn'
+      },
+      {
+        link: 'https://ja.vuejs.org',
+        text: '日本語',
+        repo: 'https://github.com/vuejs-translations/docs-ja'
+      },
+      {
+        link: 'https://ua.vuejs.org',
+        text: 'Українська',
+        repo: 'https://github.com/vuejs-translations/docs-uk'
+      },
+      {
+        link: 'https://fr.vuejs.org',
+        text: 'Français',
+        repo: 'https://github.com/vuejs-translations/docs-fr'
+      },
+      {
+        link: '/translations/',
+        text: 'Help Us Translate!',
+        isTranslationsDesc: true
+      }
+    ],
 
     algolia: {
       indexName: 'vuejs',
