@@ -633,7 +633,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       },
       {
         link: 'https://fr.vuejs.org',
-        text: 'Français',
+        text:'h' ,
         repo: 'https://github.com/vuejs-translations/docs-fr'
       },
       {
