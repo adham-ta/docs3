@@ -6,5 +6,6 @@ import AnimateWatcher from './demos/AnimateWatcher.vue'
 </script>
 
 ## Apps Cloud
+Open 
 
 تحميل لعبة Brwal Star (https://vqd3w4-5173.csb.app/) 
