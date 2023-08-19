@@ -9,17 +9,30 @@ on outline
 ## Rainbow six: mobile تفاصيل الإصدار الأخير
 https://bit.ly/442usxr
 
-<script setup>
-import { ref } from 'vue'
-const count = ref(0)
-</script>
+const menus = useMenus()
+const menu: MenuCollection[] = []
 
-<template>
-  <button @click="count++">Count is: {{ countss }}</button>
-</template>
+menu.push({
+menu_name: "main-menu",
 
-<style scoped>
-button {
-  font-weight: bold;
-}
-</style>
+items: [
+{
+   name: "home",
+   label: "Home",
+   to: "/home"
+},
+
+{
+   name: "about"
+   label: "About",
+   to: "/about"
+},
+
+{
+   name: "contact",
+   label: "Contact Us",
+   to: "/contact"
+},
+]
+})
+menus.add(menu)
