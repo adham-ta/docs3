@@ -110,9 +110,14 @@ function useToggleFn(
           class="switch-link"
           title="About SFC"
           href="/guide/scaling-up/sfc.html"
-          @click="closeSideBar"
           >?</a
         >
+        <a
+          class="post"
+          title="About API preference"
+          href="/service/posts/"
+          @click="closeSideBar"
+          >?</a
       </div>
     </div>
   </div>
