@@ -28,13 +28,13 @@ const nav: ThemeConfig['nav'] = [
     ]
   },
   {
-    text: 'API',
+    text: 'APP Cloud',
     activeMatch: `^/api/`,
-    link: '/api/'
+    link: '/service/app.html'
   },
   {
-    text: 'Playground',
-    link: 'https://play.vuejs.org'
+    text: 'Posts',
+    link: '/service/posts/home.html'
   },
   {
     text: 'Ecosystem',
