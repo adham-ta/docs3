@@ -12,8 +12,7 @@ export default {
   components: {
     vueAwesomeSidebar
   }
-}
-2. Create a basic sidebar navigation on your web app.
+} 
 
 <template>
   <VueAwesomeSideBar
