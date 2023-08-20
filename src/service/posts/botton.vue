@@ -1,273 +1,267 @@
-<script setup lang="ts">
-import { VTSwitch, VTIconChevronDown } from '@vue/theme'
-import { useRoute } from 'vitepress'
-import { ref, computed, inject, Ref } from 'vue'
-import {
-  preferCompositionKey,
-  preferComposition,
-  preferSFCKey,
-  preferSFC
-} from './preferences'
-import PreferenceTooltip from './PreferenceTooltip.vue'
-
-const route = useRoute()
-const show = computed(() =>
-  /^\/(guide|tutorial|examples|style-guide)\//.test(route.path)
-)
-const showSFC = computed(() => !/^\/guide|style-guide/.test(route.path))
-
-let isOpen = ref(true)
-
-const toggleOpen = () => {
-  isOpen.value = !isOpen.value
-}
-
-const removeOutline = (e: Event) => {
-  ;(e.target as HTMLElement).classList.add('no-outline')
-}
-
-const restoreOutline = (e: Event) => {
-  ;(e.target as HTMLElement).classList.remove('no-outline')
-}
-
-const toggleCompositionAPI = useToggleFn(
-  preferCompositionKey,
-  preferComposition,
-  'prefer-composition'
-)
-const toggleSFC = useToggleFn(preferSFCKey, preferSFC, 'prefer-sfc')
-const closeSideBar = inject('close-sidebar') as () => void
-
-function useToggleFn(
-  storageKey: string,
-  state: Ref<boolean>,
-  className: string
-) {
-  if (typeof localStorage === 'undefined') {
-    return () => {}
-  }
-  const classList = document.documentElement.classList
-  return (value = !state.value) => {
-    if ((state.value = value)) {
-      classList.add(className)
-    } else {
-      classList.remove(className)
-    }
-    localStorage.setItem(storageKey, String(state.value))
+import { createApp } from 'vue'
+import App from './App.vue'
+import vueAwesomeSidebar from 'vue-awesome-sidebar'
+import 'vue-awesome-sidebar/dist/vue-awesome-sidebar.css'
+const app = createApp(App)
+app.use(vueAwesomeSidebar)
+app.mount("#app")
+// OR Locally
+import vueAwesomeSidebar from 'vue-awesome-sidebar'
+import 'vue-awesome-sidebar/dist/vue-awesome-sidebar.css'
+export default {
+  components: {
+    vueAwesomeSidebar
   }
 }
-</script>
+2. Create a basic sidebar navigation on your web app.
 
 <template>
-  <div v-if="show" class="preference-switch">
-    <button
-      class="toggle"
-      aria-label="preference switches toggle"
-      aria-controls="preference-switches"
-      :aria-expanded="isOpen"
-      @click="toggleOpen"
-      @mousedown="removeOutline"
-      @blur="restoreOutline"
-    >
-      <span>API Preference</span>
-      <VTIconChevronDown class="vt-link-icon" :class="{ open: isOpen }" />
-    </button>
-    <div id="preference-switches" :hidden="!isOpen" :aria-hidden="!isOpen">
-      <div class="switch-container">
-        <label class="options-label" @click="toggleCompositionAPI(false)"
-          >Options</label
-        >
-        <VTSwitch
-          class="api-switch"
-          aria-label="prefer composition api"
-          :aria-checked="preferComposition"
-          @click="toggleCompositionAPI()"
-        />
-        <label
-          class="composition-label"
-          @click="toggleCompositionAPI(true)"
-          >Composition</label
-        >
-        <a
-          class="switch-link"
-          title="About API preference"
-          href="/guide/introduction.html#api-styles"
-          @click="closeSideBar"
-          >?</a
-        >
-        <PreferenceTooltip />
-      </div>
-      <div class="switch-container" v-if="showSFC">
-        <label class="no-sfc-label" @click="toggleSFC(false)">HTML</label>
-        <VTSwitch
-          class="sfc-switch"
-          aria-label="prefer single file component"
-          :aria-checked="preferSFC"
-          @click="toggleSFC()"
-        />
-        <label class="sfc-label" @click="toggleSFC(true)">SFC</label>
-        <a
-          class="switch-link"
-          title="About SFC"
-          href="/guide/scaling-up/sfc.html"
-          @click="closeSideBar"
-          >?</a
-        >
-      </div>
-    </div>
-  </div>
+  <VueAwesomeSideBar
+    v-model:miniMenu="miniMenu"
+    v-model:collapsed="collapsed"
+    :menu="myMenu"
+    vueRouterEnabel
+  ></VueAwesomeSideBar>
 </template>
+<script setup>
+import { ref } from 'vue'
+const collapsed = ref(false)
+const miniMenu = ref(false)
+const myMenu = [
+  {
+    name: 'Getting Started',
+    icon: { text: 'home' , class: 'material-icons-outlined' },
+    children: [
+      {
+        name: 'level 1.1',
+        href: '/a',
+        icon: { text: 'home' , class: 'material-icons-outlined'},
+        children: [
+          {
+            href: '/b',
+            name: 'level 1.1.1',
+          },
+        ]
+      },
+      {
+        name: 'level 1.2'
+      }
+    ],
+  },
+  {
+    header: 'Settings'
+  },
+  {
+    name: 'Dashboard',
+    icon: { class: 'material-icons-outlined', text: 'dashboard' },
+    children: [
+      {
+        href: '/c',
+        name: 'level 2.1',
+      },
+    ]
+  },
+  {
+    name: 'close menu',
+    icon: { text: 'settings', class: 'material-icons-outlined' },
+  },
+]
+</script>
+3. Available sidebar props.
 
-<style scoped>
-.preference-switch {
-  font-size: 12px;
-  border-bottom: 1px solid var(--vt-c-divider-light);
-  transition: border-color 0.5s, background-color 0.5s ease;
-  margin-bottom: 20px;
-  position: sticky;
-  top: -0.5px;
-  background-color: var(--vt-c-bg);
-  padding-top: 10px;
-  z-index: 10;
+menu: {
+  type: Array,
+  required: true
+},
+menuType: {
+  type: String,
+  default: 'simple' // OR "fully"
+},
+collapsed: {
+  type: Boolean,
+  default: false
+},
+miniMenu: {
+  type: Boolean,
+  default: false
+},
+animationDuration: {
+  type: Number,
+  default: 300
+},
+width: {
+  type: String,
+  default: '290px'
+},
+widthMiniMenu: {
+  type: String,
+  default: '65px'
+},
+autoCollapse: {
+  type: Number,
+  default: null
+},
+removeIconSpace: {
+  type: Boolean,
+  default: false
+},
+closeOnClickOutSide: {
+  type: Boolean,
+  default: false
+},
+overLayerOnOpen: {
+  type: Boolean,
+  default: false
+},
+childrenOpenAnimation: {
+  type: Boolean,
+  default: true
+},
+position: {
+  type: String,
+  default: 'fixed'
+},
+keepChildrenOpen: {
+  type: Boolean,
+  default: false
+},
+ChildrenOpenActiveRoute: {
+  type: Boolean,
+  default: true
+},
+checkButtonActive: {
+  type: Boolean,
+  default: true
+},
+vueRouterEnabel: {
+  type: Boolean,
+  default: false
+},
+BottomMiniMenuBtn: {
+  type: Boolean,
+  default: true
+},
+paddingTop: {
+  type: String,
+  default: '0px'
+},
+dark: {
+  type: Boolean
+},
+rtl: {
+  type: Boolean,
+  default: false
 }
-
-.toggle {
-  color: var(--vt-c-text-2);
-  transition: color 0.5s;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 2px;
-  width: 100%;
-  font-weight: 600;
+closeOpenMenuOnHrefPush:{
+  type: Boolean,
+  default: false
 }
+4. Slots.
 
-.toggle:hover {
-  color: var(--vt-c-text-1);
-}
+<!--menu items Append icon-->
+<template #itemApendIcon="{ icon,isChildrenMenuOpen, active,miniActive }"></template>
+<!--menu items label -->
+<template #menuItemLabel="{labelName ,isChildrenMenuOpen, active,miniActive}"></template>
+<!--menu items Preppend icon-->
+<template #itemPrepandIcon="{ icon,isChildrenMenuOpen, active,miniActive }"></template>
+<!--menu header item-->
+<template #headerItem="{ header }"></template>
+<!--menu header at the top of the menu-->
+<template #header></template>
+<!--menu footer -->
+<template #footer></template>
+<!--menus bottom toggle btn -->
+<template #BottomMiniMenuBtn></template>
+5. Events.
 
-.no-outline {
-  outline: 0;
-}
+@item-click(MenuItem)
+@update:collapsed(isCollapsed)
+@update:miniMenu(isMiniMenu)
+Preview:
+Awesome Sidebar Navigation Component For Vue 3
+Changelog:
+03/01/2023
 
-.vt-link-icon {
-  position: relative;
-  top: 1px;
-}
+ADD option to close open menus on router push
+Download Details:
+Author: amirkian007
 
-.vt-link-icon.open {
-  transform: rotate(180deg);
-}
+Live Demo: https://amirkian007.github.io/vasmenu/#/
 
-#preference-switches {
-  padding: 12px 16px;
-  background-color: var(--vt-c-bg-soft);
-  transition: background-color 0.5s;
-  margin: 6px 0 12px;
-  border-radius: 8px;
-  font-weight: 600;
-}
+Download Link: https://github.com/amirkian007/vue-awesome-sidebar/archive/refs/heads/main.zip
 
-.switch-container {
-  display: flex;
-  align-items: center;
-}
+Official Website: https://github.com/amirkian007/vue-awesome-sidebar
 
-@media(max-width: 959px){
-  .switch-container {
-    padding: 0 1em;
-  }
-}
+Install & Download:
+# Yarn
+$ yarn add vue-awesome-sidebar
 
-.switch-container:nth-child(2) {
-  margin-top: 10px;
-}
+# NPM
+$ npm i vue-awesome-sidebar
+RELATED POSTS
+Off-canvas Burger Menu For Vue-min
+Off-canvas Hamburger Menu System For Vue – burger-menu
+ Vuejsadmin  April 29, 2020
+Tiny Vue Context Menu Component
+Tiny Vue Context Menu Component
+ Vuejsadmin  March 4, 2017
+Pretty Navbar Component For Vue
+Pretty Mobile-friendly Navbar Component – navigation-bar
+ Vuejsadmin  May 17, 2022
+Stripe-like Dropdown Menu For Vue.js - Stripe Menu
+Stripe-like Dropdown Menu For Vue.js – Stripe Menu
+ Vuejsadmin  October 2, 2022
+Multi-level Dock Menu Component For Vue 3
+Multi-level Dock Menu Component For Vue 3
+ Vuejsadmin  July 15, 2022
+navscroll-js
+Highlight Menu Items On Scroll – navscroll-js
+ Vuejsadmin  November 15, 2017
+Tags:side menu
+ADD COMMENT
+Comment Text*
+Name*
+Email*
+Website
+CATEGORIES
+Animation	Audio & Video
+Carousel	Chart & Graph
+Date Time	Form
+Framework	Gallery
+Image	Layout
+Loading	Modal
+Navigation	Notification
+Others	Pagination
+Scroll	Social
+Table	Text
+Tooltip	UI
+RECENT COMPONENTS
+Datetime & Date Range Picker For Vue 3
+Datetime & Date Range Picker For Vue 3
+ August 19, 2023
+Interactive Network Graph Visualization Component For Vue 3
+Interactive Network Graph Visualization Component For Vue 3
+ August 18, 2023
+Tiny Input Mask Library For Vue.js - Input Facade
+Tiny Input Mask Library For Vue.js – Input Facade
+ August 18, 2023
+Notification Library For Vue 3
+Notification Library For Vue 3
+ August 18, 2023
+Lazy Load Youtube Videos To Improve Load Speed
+Lazy Load Youtube Videos To Improve Load Speed
+ August 18, 2023
+POPULAR COMPONENTS
+Versatile Number Formatting Library For Vue
+Versatile Number Formatting Library For Vue
+User-friendly Search Input Component Inspired By Github
+User-friendly Search Input Component Inspired By Github
+Code Diff Plugin
+Code Diff Plugin For Vue 3/2
+Simple Draggable Gantt Chart For Vue - Ganttastic
+Simple Draggable Gantt Chart For Vue – Ganttastic
+Minimal PDF Viewer For Vue 3
+Minimal PDF Viewer For Vue 3
+FEATURED
+7 Best Loading/Progress Indicator Libraries For Vue.js (2023 Update)
 
-.vt-switch {
-  margin-right: 5px;
-  transform: scale(0.8);
-}
-
-.switch-container label {
-  transition: color 0.5s;
-  cursor: pointer;
-}
-
-.switch-container label:first-child {
-  width: 50px;
-}
-
-.switch-link {
-  margin-left: 8px;
-  font-size: 11px;
-  min-width: 14px;
-  height: 14px;
-  line-height: 13px;
-  text-align: center;
-  color: var(--vt-c-green);
-  border: 1px solid var(--vt-c-green);
-  border-radius: 50%;
-}
-
-@media (max-width: 1439px) {
-  #preference-switches {
-    font-size: 11px;
-    padding: 8px 4px;
-  }
-
-  .vt-switch {
-    margin: auto;
-  }
-
-  .switch-link {
-    margin-left: auto;
-  }
-  .switch-container label:first-child {
-    width: 46px;
-  }
-}
-</style>
-
-<style>
-.composition-api,
-.sfc {
-  display: none;
-}
-
-.prefer-composition .options-api,
-.prefer-sfc .html {
-  display: none;
-}
-
-.prefer-composition .composition-api,
-.prefer-sfc .sfc {
-  display: initial;
-}
-
-.prefer-composition .api-switch .vt-switch-check {
-  transform: translateX(18px);
-}
-
-.composition-label,
-.sfc-label,
-.prefer-composition .options-label,
-.prefer-sfc .no-sfc-label {
-  color: var(--vt-c-text-3);
-}
-
-.prefer-composition .composition-label,
-.prefer-sfc .sfc-label {
-  color: var(--vt-c-text-1);
-}
-
-.prefer-sfc .sfc-switch .vt-switch-check {
-  transform: translateX(18px);
-}
-
-.tip .options-api,
-.tip .composition-api {
-  color: var(--vt-c-text-code);
-  /* transition: color 0.5s; */
-  font-weight: 600;
-}
-</style>
