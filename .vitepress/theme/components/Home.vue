@@ -23,8 +23,8 @@ onMounted(async () => {
     </p>
     <p class="actions">
       <VueMasteryModal />
-      <a class="get-started" href="/service/apps/home.html">
-        Apps Cloud
+      <a class="get-started" href="/service/apps/app.html">
+        Apps Cloud - الألعاب
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ onMounted(async () => {
           />
         </svg>
       </a>
-      <a class="setup" href="/service/posts/home.md">Post</a>
+      <a class="setup" href="/service/posts/home.md">Post-المقالات</a>
     </p>
   </section>
 
