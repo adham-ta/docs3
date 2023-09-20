@@ -29,11 +29,11 @@
 }
 .dark .style-example-good {
   background: transparent;
-  border-color: var(--vt-c-green);
+  border-color: var(--vt-c-red);
 }
 
 .style-example-good h3 {
-  color: var(--vt-c-green);
+  color: var(--vt-c-red);
 }
 
 .details summary {
