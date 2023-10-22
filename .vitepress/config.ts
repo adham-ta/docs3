@@ -560,8 +560,8 @@ export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
   lang: 'en-US',
-  title: 'Vue.js',
-  description: 'Vue.js - The Progressive JavaScript Framework',
+  title: 'RepoBot',
+  description: 'RepoBot - Our Community',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
 
@@ -664,8 +664,8 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
 
     editLink: {
-      repo: 'vuejs/docs',
-      text: 'Edit this page on GitHub'
+      repo: '.',
+      text: '.'
     },
 
     footer: {
