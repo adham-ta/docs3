@@ -1,10 +1,9 @@
 ---
-title: إشاعة: قد يتم الكشف عن لعبة Dishonored جديدة في TGA 2023
-description: Dishonored news.
----
+on outline
+--- 
 
-## إشاعة: قد يتم الكشف عن لعبة Dishonored جديدة في TGA 2023
-
+## العنوان: إشاعة: قد يتم الكشف عن لعبة Dishonored جديدة في TGA 2023
+## الوصف: Dishonored news.
 
 منذ مدة ونحن نسمع تسريبات تقول بأن استوديو Arkane سيعود أخيراً لتطوير Dishonored 3 بعد تقديمه Deathloop و Redfall. ويبدو أن جمهور Dishonored سيرغبون في متابعة حدث The Game Awards 2023، والذي من المقرر أن يتم بثه في 7 ديسمبر.
 
