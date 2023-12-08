@@ -15,7 +15,7 @@ onMounted(async () => {
   <section id="hero">
     <h1 class="tagline">
       The
-      <span class="accent">RepoBot</span>
+      <span class="accent">King</span>
       <br /> Servies
     </h1>
     <p class="description">
