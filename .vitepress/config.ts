@@ -496,8 +496,8 @@ export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
   lang: 'en-US',
-  title: 'RepoBot',
-  description: 'RepoBot - Our Community',
+  title: 'king',
+  description: 'King - Our Community',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
 
@@ -509,14 +509,14 @@ export default defineConfigWithTheme<ThemeConfig>({
       'meta',
       {
         name: 'twitter:image',
-        content: 'https://vuejs.org/images/logo.png'
+        content: 'https://vuejs.org/images/log1o.png'
       }
     ],
     [
       'link',
       {
         rel: 'preconnect',
-        href: 'https://sponsors.vuejs.org'
+        href: '0'
       }
     ],
     [
@@ -539,7 +539,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     [
       'script',
       {
-        src: 'https://vueschool.io/banner.js?affiliate=vuejs&type=top',
+        src: '00',
         async: 'true'
       }
     ]
@@ -550,34 +550,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     sidebar,
     // Placeholder of the i18n config for @vuejs-translations.
     // i18n,
-
-    localeLinks: [
-      {
-        link: 'https://cn.vuejs.org',
-        text: '简体中文',
-        repo: 'https://github.com/vuejs-translations/docs-zh-cn'
-      },
-      {
-        link: 'https://ja.vuejs.org',
-        text: '日本語',
-        repo: 'https://github.com/vuejs-translations/docs-ja'
-      },
-      {
-        link: 'https://ua.vuejs.org',
-        text: 'Українська',
-        repo: 'https://github.com/vuejs-translations/docs-uk'
-      },
-      {
-        link: 'https://fr.vuejs.org',
-        text: 'Français',
-        repo: 'https://github.com/vuejs-translations/docs-fr'
-      },
-      {
-        link: '/translations/',
-        text: 'Help Us Translate!',
-        isTranslationsDesc: true
-      }
-    ],
 
     algolia: {
       indexName: 'vuejs',
@@ -594,9 +566,9 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/' },
-      { icon: 'twitter', link: 'https://twitter.com/vuejs' },
-      { icon: 'discord', link: 'https://discord.com/invite/HBherRA' }
+      { icon: 'github', link: 'soon' },
+      { icon: 'twitter', link: 'https://web.threadles.net/king' },
+      { icon: 'discord', link: 'soon' }
     ],
 
     editLink: {
@@ -606,10 +578,16 @@ export default defineConfigWithTheme<ThemeConfig>({
 
     footer: {
       license: {
-        text: 'MIT License',
-        link: 'https://opensource.org/licenses/MIT'
+        text: 'صيانة (تعريف) ',
+        link: 'https://web.threadles.net/king'
       },
-      copyright: `Copyright © 2014-${new Date().getFullYear()} Evan You`
+      copyright: `هي خدمة أعمال تساعدك على معرفة خدمات منصة King 
+      King كانت من السابق منصة أخرى لاكن هي انتقلت مؤخراً إلى King من جديد 
+      تعمل على نشر اخبار الألعاب والهامة وتوفير متجر الكتروني و خدمة منصات أخرى 
+      تعرف على المزيد بعد انتهاء الصيانة
+      https://kingbt.netlify.app/King`
+
+      
     }
   },
 
